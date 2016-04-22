@@ -1,0 +1,45 @@
+#Con este dockerfile se instala FASTXtools en una imagen de biodocker
+
+#correr el docker
+docker-machine start default 
+
+#Crear un contenedor con la imagen de biodocker; dar contraseña a sudo 
+sudo docker run -it biodckr /bin/bash
+
+#Dentro del contenedor hacer un wget para bajar el FASTXtools 
+
+wget https://github.com/agordon/libgtextutils/releases/download/0.7/libgtextutils-0.7.tar.gz 
+
+#destarar 
+tar -xvf libgtextutils-0.7.tar.gz
+ cd libgtextutils-0.7.tar.gz
+
+#ver si existe configure 
+ls 
+
+#instalar 
+./configure
+make
+sudo make install 
+
+#contraseña de sudo dentro del contenedor biodcker es biodocker 
+
+ls 
+cat REEDME 
+
+# bajar 
+wget https://github.com/agordon/fastx_toolkit/releases/download/0.0.14/fastx_toolkit-0.0.14.tar.bz2
+
+#destarar 
+tar – xvf fastx_toolkit-0.0.14.tar.bz2
+cd fastx_toolkit-0.0.14.tar.bz2
+ls
+
+#instalar 
+./configure
+make
+sudo make install
+
+#para corroborar si la instalación fue correcta meter un comando de FASTXtools ejemplo 
+
+fastq_to_fasta -h
